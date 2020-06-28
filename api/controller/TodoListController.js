@@ -8,6 +8,12 @@
  const TodoListService = require('../service/TodoListService');
 
 
+ exports.getListBaseOnLoginId = (req,res,next) =>{
+     var query ={loginId: req.body.loginId}
+    TodoListService.getListBaseOnLoginId(query).then(doc=>{
+        res.status(200).json(doc);
+    }).catch(next);
+ }
  exports.getAllTodoList= (req,res,next)=>{
      TodoListService.getAllTodoList(req,res).then(doc=>{
          res.status(200).json(doc);

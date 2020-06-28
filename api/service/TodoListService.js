@@ -10,6 +10,14 @@ const TodoList = require("../model/TodoList");
 const dateTime = require("node-datetime");
 
 
+async function getListBaseOnLoginId(query){
+  var result;
+  await TodoList.find(query).then(doc=>{
+    result = doc;
+  });
+  return result;
+}
+
 async function getAllTodoList(req, res) {
   var result;
   await TodoList.find().then((doc) => {
@@ -25,6 +33,7 @@ async function saveTodoList(req, res) {
   const todoList = new TodoList({
     _id: new mongoose.Types.ObjectId(),
     taskName: req.body.taskName,
+    loginId: req.body.loginId,
     description: req.body.description,
     status: req.body.status,
     createdBy: req.body.user,
@@ -43,6 +52,7 @@ async function updateTodoList(req,res){
   await TodoList.findByIdAndUpdate({_id:req.body._id},{
       $set:{
         taskName: req.body.taskName,
+        loginId: req.body.loginId,
         description: req.body.description,
         status: req.body.status,
         modifiedBy: req.body.user,
@@ -80,3 +90,4 @@ module.exports.getAllTodoList = getAllTodoList;
 module.exports.updateTodoList = updateTodoList;
 module.exports.statusupdateTodoList = statusupdateTodoList;
 module.exports.deleteTodoList = deleteTodoList;
+module.exports.getListBaseOnLoginId = getListBaseOnLoginId;

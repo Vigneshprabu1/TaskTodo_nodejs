@@ -16,5 +16,6 @@
  router.patch('/',TodoListContoller.updateTodoList);
  router.patch('/status',TodoListContoller.statusupdateTodoList);
  router.put('/',TodoListContoller.deleteTodoList);
+ router.post('/id',TodoListContoller.getListBaseOnLoginId);
 
  module.exports = router;

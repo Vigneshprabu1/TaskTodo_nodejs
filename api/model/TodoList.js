@@ -11,6 +11,7 @@
  const todoListSchema = mongoose.Schema({
    _id: mongoose.Types.ObjectId,
    taskName: String,
+   loginId:{type:mongoose.Schema.Types.ObjectId, ref:'Login'},
    description:String,
    status: String,
    createdBy: String,
